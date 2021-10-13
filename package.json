@@ -1,0 +1,24 @@
+{
+  "name": "sudoku",
+  "version": "1.0.0",
+  "description": "javascript sudoku solver &amp; generator",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guzus/sudoku.git"
+  },
+  "author": "guzus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guzus/sudoku/issues"
+  },
+  "homepage": "https://github.com/guzus/sudoku#readme",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.1.2"
+  }
+}
