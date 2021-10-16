@@ -1,7 +1,8 @@
 # Sudoku
 javascript sudoku solver &amp; generator
 
-https://user-images.githubusercontent.com/50664161/137593989-7babd462-1225-4f16-acd5-916bcad0b7fb.mp4
+![sudoku](https://user-images.githubusercontent.com/50664161/137594693-2a460a75-8f8c-4a82-81c9-55f4a461b4d1.gif)
+
 
 ## How to Generate and Solve Sudoku
 ```
