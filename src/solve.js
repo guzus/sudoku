@@ -5,18 +5,18 @@ const solve = (arr) => {
   problemArray = arr;
   let resultArray = arr.slice();
   dfs(resultArray);
-  displayHorizontally([
-    // {name : "Sudoku Problem", array : problemArray},
-    { name: "Sudoku Result", array: resultArray },
-  ]);
+  // displayHorizontally([
+  //   // {name : "Sudoku Problem", array : problemArray},
+  //   { name: "Sudoku Result", array: resultArray },
+  // ]);
   return resultArray;
 };
 
 const dfs = (arr) => {
-  displayHorizontally([
-    // {name : "Sudoku Problem", array : problemArray},
-    { name: "Sudoku Result", array: arr },
-  ]);
+  // displayHorizontally([
+  //   // {name : "Sudoku Problem", array : problemArray},
+  //   { name: "Sudoku Result", array: arr },
+  // ]);
 
   const [isFull, [i, j]] = checkFull(arr);
   if (isFull) return;

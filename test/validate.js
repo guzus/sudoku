@@ -34,8 +34,8 @@ const validate = (array) => {
     //   done();
     // });
     it("column", (done) => {
-      column_array = [...Array(10)].map((x) => Array());
-      arr = [...array];
+      let column_array = [...Array(9)].map((x) => Array());
+      let arr = [...array];
       for(const row of arr) {
         for(const [j, element] of row.entries()) {
           column_array[j].push(element);
@@ -43,12 +43,12 @@ const validate = (array) => {
       }
       for(const column of column_array) {
         console.log(column);
-        expect(column.sort()).to.equal(sudokuArray);
+        expect(column).to.have.members(sudokuArray);
       }
       done();
     });
     it("block", (done) => {
-      block_array = [...Array(10)].map((x) => Array());
+      let block_array = [...Array(9)].map((x) => Array());
       for(const [i, row] of array.entries()) {
         for(const [j, element] of row.entries()) {
           console.log(element);
@@ -57,7 +57,7 @@ const validate = (array) => {
       }
       for(const block of block_array) {
         console.log(block);
-        expect(block.sort()).to.equal(sudokuArray);
+        expect(block).to.have.members(sudokuArray);
       }
       done();
     });
