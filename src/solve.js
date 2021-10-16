@@ -3,14 +3,14 @@ let problemArray;
 
 const solve = (arr) => {
   problemArray = arr;
-  let resultArray = arr.slice();
+  let resultArray = JSON.parse(JSON.stringify(arr));
   dfs(resultArray);
   return resultArray;
 };
 
 const dfs = (arr) => {
   displayHorizontally([
-    // {name : "Sudoku Problem", array : problemArray},
+    { name: "Sudoku Problem", array: problemArray },
     { name: "Sudoku Result", array: arr },
   ]);
 

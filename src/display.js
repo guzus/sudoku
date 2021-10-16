@@ -11,9 +11,11 @@ const TEST_MODE_DISPLAY_FPS = 1000;
 const displayHorizontally = (sudokus) => {
   let displayString = "";
   let sudokuStrings = [];
-  for (const sudoku of sudokus) {
-    sudokuStrings.push(getStringFromSudoku(sudoku.name, sudoku.array).split("\n"));
-  }
+  sudokus.forEach((sudoku) => {
+    sudokuStrings.push(
+      getStringFromSudoku(sudoku.name, sudoku.array).split("\n")
+    );
+  });
 
   for (let i = 0; i < DISPLAY_LINE; i++) {
     for (const sudokuString of sudokuStrings) {
@@ -29,14 +31,14 @@ const displayHorizontally = (sudokus) => {
 const getStringFromSudoku = (name, arr) => {
   let displayString = "";
   displayString += name + "    \n\n";
-  for (const row of arr) {
-    for (const element of row) {
+  arr.forEach((row) => {
+    row.forEach((element) => {
       if (DISPLAY_MODE == MODE.BLANK && element === 0) {
         displayString += "  ";
       } else displayString += element + " ";
-    }
+    });
     displayString += "\n";
-  }
+  });
   displayString += "\n";
   return displayString;
 };

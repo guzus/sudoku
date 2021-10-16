@@ -1,9 +1,9 @@
 const assert = require("assert");
 const { expect } = require("chai");
-const generate = require("../src/generate.js").generate;
-const solve = require("../src/solve.js").solve;
+const { generate } = require("../src/generate.js");
+const { solve } = require("../src/solve.js");
 
-function validate(array) {
+const validate = (array) => {
   describe("Size of Array", () => {
     it("should be 9*9", () => {
       expect(array.length).equal(9);
@@ -26,46 +26,51 @@ function validate(array) {
 
   describe("Distinctiveness of Numbers", () => {
     const sudokuArray = Array.from({ length: 9 }, (_, i) => i + 1); // 1~9
-    it("row", () => {
+    it("row", (done) => {
       array.forEach((row) => {
-        expect(row.sort()).to.equal(sudokuArray);
+        expect(row).to.have.members(sudokuArray);
       });
+      done();
     });
-    it("column", () => {
-      column_array = [...Array(10)].map((x) => Array());
+    it("column", (done) => {
+      let column_array = [...Array(9)].map((x) => Array());
       array.forEach((row) => {
-        row.forEach((element, index) => {
-          column_array[index].push(element);
+        row.forEach((element, j) => {
+          column_array[j].push(element);
         });
       });
       column_array.forEach((column) => {
-        expect(column.sort()).to.equal(sudokuArray);
+        expect(column).to.have.members(sudokuArray);
       });
+      done();
     });
-    it("block", () => {
-      block_array = [...Array(10)].map((x) => Array());
+    it("block", (done) => {
+      let block_array = [...Array(9)].map((x) => Array());
       array.forEach((row, i) => {
         row.forEach((element, j) => {
-          block_array[Math.floor(i/3)*3 + Math.floor(j/3)].push(element);
+          block_array[Math.floor(i / 3) * 3 + Math.floor(j / 3)].push(element);
         });
       });
       block_array.forEach((block) => {
-        expect(block.sort()).to.equal(sudokuArray);
+        expect(block).to.have.members(sudokuArray);
       });
+      done();
     });
   });
-}
+};
 
 // validate output
 
-validate([
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-]);
+validate(
+  solve([
+    [9, 0, 0, 6, 0, 0, 0, 2, 0],
+    [0, 0, 5, 0, 0, 0, 3, 0, 1],
+    [0, 6, 0, 0, 0, 5, 0, 8, 0],
+    [3, 0, 0, 0, 9, 0, 2, 0, 6],
+    [0, 8, 0, 1, 0, 2, 0, 9, 0],
+    [7, 0, 9, 0, 5, 0, 0, 0, 4],
+    [0, 7, 0, 5, 0, 0, 0, 3, 0],
+    [6, 0, 3, 0, 0, 0, 1, 0, 0],
+    [0, 5, 0, 0, 0, 3, 0, 0, 2],
+  ])
+);
