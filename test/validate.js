@@ -1,9 +1,9 @@
 const assert = require("assert");
 const { expect } = require("chai");
-const generate = require("../src/generate.js").generate;
-const solve = require("../src/solve.js").solve;
+const { generate } = require("../src/generate.js");
+const { solve } = require("../src/solve.js");
 
-function validate(array) {
+const validate = (array) => {
   describe("Size of Array", () => {
     it("should be 9*9", () => {
       expect(array.length).equal(9);
@@ -24,48 +24,58 @@ function validate(array) {
     });
   });
 
-  describe("Distinctiveness of Numbers", () => {
+  describe.only("Distinctiveness of Numbers", () => {
     const sudokuArray = Array.from({ length: 9 }, (_, i) => i + 1); // 1~9
-    it("row", () => {
-      array.forEach((row) => {
-        expect(row.sort()).to.equal(sudokuArray);
-      });
-    });
-    it("column", () => {
+    // it("row", (done) => {
+    //   const arr = [...array];
+    //   for(const row of arr) {
+    //     expect(row.sort()).to.equal(sudokuArray);
+    //   }
+    //   done();
+    // });
+    it("column", (done) => {
       column_array = [...Array(10)].map((x) => Array());
-      array.forEach((row) => {
-        row.forEach((element, index) => {
-          column_array[index].push(element);
-        });
-      });
-      column_array.forEach((column) => {
+      arr = [...array];
+      for(const row of arr) {
+        for(const [j, element] of row.entries()) {
+          column_array[j].push(element);
+        }
+      }
+      for(const column of column_array) {
+        console.log(column);
         expect(column.sort()).to.equal(sudokuArray);
-      });
+      }
+      done();
     });
-    it("block", () => {
+    it("block", (done) => {
       block_array = [...Array(10)].map((x) => Array());
-      array.forEach((row, i) => {
-        row.forEach((element, j) => {
-          block_array[Math.floor(i/3)*3 + Math.floor(j/3)].push(element);
-        });
-      });
-      block_array.forEach((block) => {
+      for(const [i, row] of array.entries()) {
+        for(const [j, element] of row.entries()) {
+          console.log(element);
+          block_array[Math.floor(i / 3) * 3 + Math.floor(j / 3)].push(element);
+        }
+      }
+      for(const block of block_array) {
+        console.log(block);
         expect(block.sort()).to.equal(sudokuArray);
-      });
+      }
+      done();
     });
   });
-}
+};
 
 // validate output
 
-validate([
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-  [0, 1, 2, 3, 2, 0, 4, 9, 0],
-]);
+validate(
+  solve([
+    [9, 0, 0, 6, 0, 0, 0, 2, 0],
+    [0, 0, 5, 0, 0, 0, 3, 0, 1],
+    [0, 6, 0, 0, 0, 5, 0, 8, 0],
+    [3, 0, 0, 0, 9, 0, 2, 0, 6],
+    [0, 8, 0, 1, 0, 2, 0, 9, 0],
+    [7, 0, 9, 0, 5, 0, 0, 0, 4],
+    [0, 7, 0, 5, 0, 0, 0, 3, 0],
+    [6, 0, 3, 0, 0, 0, 1, 0, 0],
+    [0, 5, 0, 0, 0, 3, 0, 0, 2],
+  ])
+);

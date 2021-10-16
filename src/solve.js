@@ -5,6 +5,10 @@ const solve = (arr) => {
   problemArray = arr;
   let resultArray = arr.slice();
   dfs(resultArray);
+  displayHorizontally([
+    // {name : "Sudoku Problem", array : problemArray},
+    { name: "Sudoku Result", array: resultArray },
+  ]);
   return resultArray;
 };
 

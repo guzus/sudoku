@@ -23,7 +23,7 @@ const displayHorizontally = (sudokus) => {
   }
   console.clear();
   console.log(displayString);
-  sleep(1000 / DISPLAY_FPS);
+//   sleep(1000 / DISPLAY_FPS);
 };
 
 const getStringFromSudoku = (name, arr) => {
