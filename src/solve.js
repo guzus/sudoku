@@ -3,20 +3,16 @@ let problemArray;
 
 const solve = (arr) => {
   problemArray = arr;
-  let resultArray = arr.slice();
+  let resultArray = JSON.parse(JSON.stringify(arr));
   dfs(resultArray);
-  // displayHorizontally([
-  //   // {name : "Sudoku Problem", array : problemArray},
-  //   { name: "Sudoku Result", array: resultArray },
-  // ]);
   return resultArray;
 };
 
 const dfs = (arr) => {
-  // displayHorizontally([
-  //   // {name : "Sudoku Problem", array : problemArray},
-  //   { name: "Sudoku Result", array: arr },
-  // ]);
+  displayHorizontally([
+    { name: "Sudoku Problem", array: problemArray },
+    { name: "Sudoku Result", array: arr },
+  ]);
 
   const [isFull, [i, j]] = checkFull(arr);
   if (isFull) return;

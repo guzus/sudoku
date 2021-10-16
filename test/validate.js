@@ -24,41 +24,36 @@ const validate = (array) => {
     });
   });
 
-  describe.only("Distinctiveness of Numbers", () => {
+  describe("Distinctiveness of Numbers", () => {
     const sudokuArray = Array.from({ length: 9 }, (_, i) => i + 1); // 1~9
-    // it("row", (done) => {
-    //   const arr = [...array];
-    //   for(const row of arr) {
-    //     expect(row.sort()).to.equal(sudokuArray);
-    //   }
-    //   done();
-    // });
+    it("row", (done) => {
+      array.forEach((row) => {
+        expect(row).to.have.members(sudokuArray);
+      });
+      done();
+    });
     it("column", (done) => {
       let column_array = [...Array(9)].map((x) => Array());
-      let arr = [...array];
-      for(const row of arr) {
-        for(const [j, element] of row.entries()) {
+      array.forEach((row) => {
+        row.forEach((element, j) => {
           column_array[j].push(element);
-        }
-      }
-      for(const column of column_array) {
-        console.log(column);
+        });
+      });
+      column_array.forEach((column) => {
         expect(column).to.have.members(sudokuArray);
-      }
+      });
       done();
     });
     it("block", (done) => {
       let block_array = [...Array(9)].map((x) => Array());
-      for(const [i, row] of array.entries()) {
-        for(const [j, element] of row.entries()) {
-          console.log(element);
+      array.forEach((row, i) => {
+        row.forEach((element, j) => {
           block_array[Math.floor(i / 3) * 3 + Math.floor(j / 3)].push(element);
-        }
-      }
-      for(const block of block_array) {
-        console.log(block);
+        });
+      });
+      block_array.forEach((block) => {
         expect(block).to.have.members(sudokuArray);
-      }
+      });
       done();
     });
   });

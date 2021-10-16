@@ -3,7 +3,7 @@ const { solve } = require("./solve.js");
 
 const app = () => {
   const problemArr = generate();
-  const resultArray = solve(problemArr);
+  solve(problemArr);
 };
 
 app();
