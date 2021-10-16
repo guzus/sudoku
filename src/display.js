@@ -8,15 +8,17 @@ const DISPLAY_FPS = 1000;
 const TEST_MODE_DISPLAY_FPS = 1000;
 
 // elements : Array of sudoku
-const displayHorizontally = (sudokus) => {
+const displayHorizontally = (element) => {
   let displayString = "";
   let sudokuStrings = [];
-  sudokus.forEach((sudoku) => {
+
+  element.sudokus.forEach((sudoku) => {
     sudokuStrings.push(
       getStringFromSudoku(sudoku.name, sudoku.array).split("\n")
     );
   });
 
+  displayString += element.status + "\n\n";
   for (let i = 0; i < DISPLAY_LINE; i++) {
     for (const sudokuString of sudokuStrings) {
       displayString += sudokuString[i] + "   ";
