@@ -1,8 +1,9 @@
-const generate = require("./generate.js").generate;
-const solve = require("./solve.js").solve;
+const { generate } = require("./generate.js");
+const { solve } = require("./solve.js");
 
-const problem_arr = generate();
-console.log(`problem: ${problem_arr}`);
+const app = async () => {
+  const problemArr = generate();
+  const resultArray = solve(problemArr);
+};
 
-const result_arr = solve(problem_arr);
-console.log(`result: ${result_arr}`);
+app();
