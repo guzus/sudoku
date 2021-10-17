@@ -8,13 +8,15 @@ const DISPLAY_BLANK_SPACE = {
     1: "0",
     2: ".",
 };
-const DISPLAY_MODE = MODE.DOT;
+const DISPLAY_MODE = MODE.ZERO;
 const DISPLAY_LINE = 12;
 const DISPLAY_FPS = 1000;
 const TEST_MODE_DISPLAY_FPS = 1000;
 
 // elements : Array of sudoku
 const displayHorizontally = (element) => {
+//   console.log(process.argv);
+//   console.log(process.argv["display_blank"]);
   let displayString = "";
   let sudokuStrings = [];
 
@@ -32,23 +34,24 @@ const displayHorizontally = (element) => {
     displayString += "\n";
   }
   console.clear();
-  console.log(displayString);
   sleep(1000 / DISPLAY_FPS);
 };
 
 const getStringFromSudoku = (name, arr) => {
   let displayString = "";
-  displayString += name + "    \n\n";
+//   displayString += name + "    \n\n";
   arr.forEach((row) => {
     row.forEach((element) => {
       if (element === 0) {
-        displayString += DISPLAY_BLANK_SPACE[DISPLAY_MODE] + " ";
+        displayString += DISPLAY_BLANK_SPACE[DISPLAY_MODE]; // + " ";
       }
-      else displayString += element + " ";
+      else displayString += element; // + " ";
     });
-    displayString += "\n";
+    // displayString += "\n";
   });
-  displayString += "\n";
+//   displayString += "\n";
+  console.log(displayString);
+  sleep(100000);
   return displayString;
 };
 
