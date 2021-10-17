@@ -1,8 +1,14 @@
 const MODE = {
   BLANK: 0, // display blank space with blank
   ZERO: 1, // display blank space with zero
+  DOT: 2, // display blank space with dot
 };
-const DISPLAY_MODE = MODE.BLANK;
+const DISPLAY_BLANK_SPACE = {
+    0: " ",
+    1: "0",
+    2: ".",
+};
+const DISPLAY_MODE = MODE.DOT;
 const DISPLAY_LINE = 12;
 const DISPLAY_FPS = 1000;
 const TEST_MODE_DISPLAY_FPS = 1000;
@@ -35,9 +41,10 @@ const getStringFromSudoku = (name, arr) => {
   displayString += name + "    \n\n";
   arr.forEach((row) => {
     row.forEach((element) => {
-      if (DISPLAY_MODE == MODE.BLANK && element === 0) {
-        displayString += "  ";
-      } else displayString += element + " ";
+      if (element === 0) {
+        displayString += DISPLAY_BLANK_SPACE[DISPLAY_MODE] + " ";
+      }
+      else displayString += element + " ";
     });
     displayString += "\n";
   });
